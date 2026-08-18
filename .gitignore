@@ -1,0 +1,49 @@
+# .NET
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+*.nupkg
+*.snupkg
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+!.env.*.example
+!**/.env.*.example
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+appsettings.*.local.json
+!appsettings.Development.example.json
+!appsettings.Production.example.json
+*.pem
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Local database backups and exports
+*.dump
+*.sql
+*.bak
+
+# Logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vs/
+.vscode/
+.idea/
+
+# Local scratch
+.codex-preview/
+.chrome-profile/

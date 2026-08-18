@@ -1,0 +1,17 @@
+bin/
+obj/
+
+.dockerignore
+Dockerfile
+
+*.user
+*.suo
+.vs/
+
+.git/
+.gitignore
+
+appsettings.Development.json
+appsettings.*.local.json
+Properties/launchSettings.json
+*.http
