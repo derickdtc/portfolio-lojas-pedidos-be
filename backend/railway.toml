@@ -2,6 +2,8 @@
 builder = "DOCKERFILE"
 
 [deploy]
+startCommand = "dotnet run"
+
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
