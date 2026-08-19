@@ -1,6 +1,11 @@
 using backend.Configuration;
 using backend.Data;
+using backend.Middleware;
 using backend.Services;
+using backend.Services.Auth;
+using backend.Services.Orders;
+using backend.Services.Products;
+using backend.Services.Stores;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -20,6 +25,15 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ProductSpreadsheetImporter>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ProductImageService>();
+builder.Services.AddScoped<ProductImportService>();
+builder.Services.AddScoped<OrderQueryService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<OrderStockService>();
+builder.Services.AddScoped<StoreService>();
 builder.Services.Configure<R2StorageOptions>(options =>
 {
     options.AccountId = GetConfigurationValue(builder.Configuration, "R2:AccountId", "R2_ACCOUNT_ID");
@@ -79,18 +93,7 @@ app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (UnauthorizedAccessException exception)
-    {
-        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        await context.Response.WriteAsJsonAsync(new { message = exception.Message });
-    }
-});
+app.UseMiddleware<ApiExceptionMiddleware>();
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }))
     .AllowAnonymous();
