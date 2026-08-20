@@ -49,8 +49,5 @@ backend/
 
 ## O que este projeto demonstra
 
-Este repositório evidencia experiência prática na construção de APIs para regras de negócio reais: modelagem relacional, controle de acesso, separação por tenant, tratamento de fluxos transacionais de estoque, integração com serviços de armazenamento e preocupação com escalabilidade de consultas.
+Uma construção de APIs para regras de negócio reais: modelagem relacional, controle de acesso, separação por tenant, tratamento de fluxos transacionais de estoque, integração com serviços de armazenamento e preocupação com escalabilidade de consultas.
 
----
-
-Desenvolvido como projeto de portfólio para demonstrar competências em desenvolvimento backend com .NET.
